@@ -1,0 +1,18 @@
+header{
+  &.MuiAppBar-root{
+    background-color: #122D3E;
+    box-shadow: none;
+    border-bottom: 1px solid #AFB8B8;
+  }
+  .nav-link{
+    color: #FFFFFF;
+    border-radius: 7px;
+    &:hover{
+      background-color: #A5AAAA;
+    }
+    &-selected{
+      //background-color: #A5AAAA;
+      color: #FFFFFF;
+    }
+  }
+}

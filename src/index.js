@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -7,9 +8,11 @@ import {ApiProvider} from "./contexts/ApiContext/ApiContext";
 
 ReactDOM.render(
   <React.StrictMode>
-      <ApiProvider>
-          <App />
-      </ApiProvider>
+      <BrowserRouter>
+          <ApiProvider>
+              <App />
+          </ApiProvider>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
