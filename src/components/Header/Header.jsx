@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Header.scss';
 import {NavLink} from "react-router-dom";
-import {Routing} from "../index";
 
 const Header = () => {
     return (
@@ -34,7 +33,6 @@ const Header = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Routing/>
         </>
     )
 }
