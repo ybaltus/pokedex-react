@@ -20,7 +20,6 @@ const ApiProvider = ({children}) => {
             const response = await(fetch(apiUrl));
             const dataJson = await response.json();
             _initPokemons(dataJson['pokemon_entries'], currentParam);
-            setLoading(false);
         }catch(error) {
             setLoading(false);
             setError(true);
@@ -52,6 +51,8 @@ const ApiProvider = ({children}) => {
         }else{
             setPokemonsFiltered(pokemonsDatas);
         }
+        setLoading(false);
+
     };
 
     const searchHandler = (value) => {

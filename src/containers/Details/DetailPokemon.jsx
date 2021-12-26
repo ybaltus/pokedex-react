@@ -1,15 +1,15 @@
 import {useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {ApiContext} from "../../contexts";
-import {Box, Chip, Divider, List, ListItem, ListItemText, Paper} from "@mui/material";
+import {Box, Chip, Divider, Paper} from "@mui/material";
 import './DetailsPokemon.scss';
+import {Spinner} from "../../components";
 
 const DetailPokemon = () => {
     let params = useParams();
     const [pokemon, setPokemon] = useState({});
     const {
         BaseURL,
-        pokemonsFiltered,
         loading,
         setLoading
     } = useContext(ApiContext);
@@ -42,13 +42,10 @@ const DetailPokemon = () => {
             types
         });
         setLoading(false);
-        console.log(dataJson);
     }
 
     if(loading) {
-        return <>
-            Chargement en cours
-        </>
+        return <Spinner/>
     }
         return (
             <>

@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {ApiContext} from "../../contexts";
 import {PokemonCard, PokemonSearch} from "../../components";
 import {Box} from "@mui/material";
