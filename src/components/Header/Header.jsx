@@ -3,8 +3,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Header.scss';
-import {NavLink, Route, Routes} from "react-router-dom";
-import {ListPokemon} from "../../containers";
+import {NavLink} from "react-router-dom";
+import {Routing} from "../index";
 
 const Header = () => {
     return (
@@ -34,9 +34,7 @@ const Header = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Routes>
-                <Route path="/" element={<ListPokemon></ListPokemon>} />
-            </Routes>
+            <Routing/>
         </>
     )
 }
