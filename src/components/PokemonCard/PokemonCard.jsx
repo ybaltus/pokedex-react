@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './PokemonCard.scss';
+import {Link} from "react-router-dom";
 
 const PokemonCard = ({pokemon: {name, urlImage, ...rest}}) => {
     return (
@@ -24,7 +25,9 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}}) => {
             </CardContent>
             <CardActions>
                 <Button size="small">Ajouter au favoris</Button>
-                <Button size="small">Voir plus</Button>
+                <Button href={`/pokemon/${name}`} title={"Voir plus"}>Voir plus</Button>
+
+                {/*<Button size="small">Voir plus</Button>*/}
             </CardActions>
         </Card>
     )

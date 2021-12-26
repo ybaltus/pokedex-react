@@ -73,7 +73,8 @@ const ApiProvider = ({children}) => {
                 setSearchValue,
                 searchValue,
                 searchUrlParam,
-                loading
+                loading,
+                setLoading
             }}
         >
             {children}
