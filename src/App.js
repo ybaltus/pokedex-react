@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import {Component} from "react";
 import {Container} from "@mui/material";
 import {ListPokemon} from './containers';

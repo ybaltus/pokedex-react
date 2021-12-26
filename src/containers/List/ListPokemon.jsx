@@ -1,6 +1,6 @@
 import {useContext, useEffect} from "react";
 import {ApiContext} from "../../contexts";
-import {PokemonDetails} from "../../components";
+import {PokemonCard} from "../../components";
 import {Box} from "@mui/material";
 
 const ListPokemon = () => {
@@ -21,11 +21,11 @@ const ListPokemon = () => {
                         display: 'flex',
                         flexDirection: {xs: 'column', md: 'row'},
                         flexWrap: 'wrap',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
                     }}
                 >
                     {pokemons.map(pokemon =>
-                        <PokemonDetails
+                        <PokemonCard
                             key={pokemon.entryNumber}
                             pokemon={pokemon}
                         />

@@ -1,4 +1,4 @@
 import Header from "./Header/Header";
-import PokemonDetails from "./PokemonDetails/PokemonDetails";
+import PokemonCard from "./PokemonCard/PokemonCard";
 
-export {Header, PokemonDetails}
+export {Header, PokemonCard}

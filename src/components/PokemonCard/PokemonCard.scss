@@ -1,0 +1,12 @@
+.pokemon-card {
+    background-color: #354042!important;
+    margin: 10px;
+    .MuiCardContent-root{
+        color: #FFFFFF;
+    }
+    .MuiCardActions-root{
+        button{
+            color: #FFFFFF;
+        }
+    }
+}

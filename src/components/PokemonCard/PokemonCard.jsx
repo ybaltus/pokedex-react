@@ -4,10 +4,13 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import './PokemonCard.scss';
 
-const PokemonDetails = ({pokemon: {name, urlImage, ...rest}}) => {
+const PokemonCard = ({pokemon: {name, urlImage, ...rest}}) => {
     return (
-        <Card sx={{ width: 300 }}>
+        <Card
+            className={"pokemon-card"}
+            sx={{ width: 300 }}>
             <CardMedia
                 component="img"
                 height="140"
@@ -27,4 +30,4 @@ const PokemonDetails = ({pokemon: {name, urlImage, ...rest}}) => {
     )
 }
 
-export default PokemonDetails;
+export default PokemonCard;
