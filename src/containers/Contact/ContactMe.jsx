@@ -82,10 +82,10 @@ const ContactMe = () => {
             >
                 <Box sx={style}>
                     <form ref={form} onSubmit={handleFormSubmit} className={"formContact"}>
-                        <TextField key={"firstname"} name={"firstname"} onChange={handleInputValue} label="Prénom" defaultValue={values.firstname}/>
-                        <TextField key={"lastname"} name={"lastname"} onChange={handleInputValue} label="Nom" fullWidth defaultValue={values.lastname}/>
-                        <TextField key={"email"} name={"email"} onChange={handleInputValue} label="Email" fullWidth defaultValue={values.email}/>
-                        <TextField key={"message"} name={"message"} onChange={handleInputValue}  label="Message" fullWidth multiline rows={5} defaultValue={values.message}/>
+                        <TextField key={"firstname"} name={"firstname"} onChange={handleInputValue} label="Prénom" defaultValue={values.firstname} inputProps={{ maxLength: 50 }}/>
+                        <TextField key={"lastname"} name={"lastname"} onChange={handleInputValue} label="Nom" fullWidth defaultValue={values.lastname} inputProps={{ maxLength: 50 }}/>
+                        <TextField key={"email"} name={"email"} onChange={handleInputValue} label="Email" fullWidth defaultValue={values.email} inputProps={{ maxLength: 50 }}/>
+                        <TextField key={"message"} name={"message"} onChange={handleInputValue}  label="Message" fullWidth multiline rows={5} defaultValue={values.message} inputProps={{ maxLength: 255 }}/>
                         <Button type="submit" disabled={loadingMessage} title={"Envoyer"}>Envoyer</Button>
                         {loadingMessage ? <CircularProgress id={"spinnerMessage"}/> : null}
                     </form>
