@@ -13,6 +13,7 @@ const ApiProvider = ({children}) => {
     const [pokemonsFiltered, setPokemonsFiltered] = useState([]);
     const [pokemonsFavorites, setPokemonsFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [alertFavorite, setAlertFavorite] = useState(0);
     const [error, setError] = useState(false);
 
     const getPokemonsPerRegion = async (slugName = null, currentParam = null) => {
@@ -22,6 +23,7 @@ const ApiProvider = ({children}) => {
             const dataJson = await response.json();
             _initPokemons(dataJson['pokemon_entries'], currentParam);
         }catch(error) {
+            console.log(error.message);
             setLoading(false);
             setError(true);
             throw error
@@ -73,13 +75,19 @@ const ApiProvider = ({children}) => {
         });
 
         if(pokemonExist.length === 0) {
-            pokemonExist = pokemonsFiltered.filter((pokemon, index) => {
+            pokemonExist = pokemons.filter((pokemon, index) => {
                 return parseInt(pokemon.entryNumber) === parseInt(entryN);
             })
             setPokemonsFavorites([pokemonExist[0], ...pokemonsFavorites])
             localStorage.setItem('poke-favorites', JSON.stringify([pokemonExist[0], ...pokemonsFavorites]));
+            setAlertFavorite(1)
         } else {
-
+            const keyToRemove = pokemonsFavorites.findIndex((pokemon)=>{
+                return parseInt(pokemon.entryNumber) === parseInt(entryN)
+            });
+            setPokemonsFavorites(pokemonsFavorites.splice(keyToRemove,1));
+            localStorage.setItem('poke-favorites', JSON.stringify([...pokemonsFavorites]));
+            setAlertFavorite(2);
         }
         setLoading(false);
     }
@@ -98,7 +106,9 @@ const ApiProvider = ({children}) => {
                 setLoading,
                 favoritesHandler,
                 pokemonsFavorites,
-                setPokemonsFavorites
+                setPokemonsFavorites,
+                alertFavorite,
+                setAlertFavorite
             }}
         >
             {children}

@@ -1,6 +1,6 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import {ApiContext} from "../../contexts";
-import {PokemonCard, PokemonSearch} from "../../components";
+import {AlertFavorite, PokemonCard, PokemonSearch} from "../../components";
 import {Box} from "@mui/material";
 
 const ListPokemon = () => {
@@ -10,6 +10,7 @@ const ListPokemon = () => {
         <>
             <h1>Liste des pokémons</h1>
             <PokemonSearch />
+            <AlertFavorite/>
             <Box
                 sx={{
                     display: 'flex',

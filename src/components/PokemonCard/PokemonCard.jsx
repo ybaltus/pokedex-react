@@ -5,11 +5,27 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './PokemonCard.scss';
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {ApiContext} from "../../contexts";
 
 const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
     const {favoritesHandler, pokemonsFavorites} = useContext(ApiContext);
+    const [textFavorite, setTextFavorite] = useState("Ajouter aux favoris");
+
+    useEffect(() => {
+        textFavoriteHandler();
+    }, [pokemonsFavorites]);
+
+    const textFavoriteHandler = () => {
+        const index = pokemonsFavorites.filter((pokemon)=>{
+            return parseInt(pokemon.entryNumber) === parseInt(rest.entryNumber)
+        });
+        if(index.length === 0) {
+            setTextFavorite('Ajouter aux favoris');
+        }else{
+            setTextFavorite('Retirer des favoris');
+        }
+    }
 
     //Vérifier s'il sont en favoris
     return (
@@ -28,7 +44,8 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                {isFavorite ? null : <Button size="small" onClick={favoritesHandler} value={rest.entryNumber}>Ajouter au favoris</Button>}
+                { isFavorite ? null :
+                    <Button size="small" onClick={favoritesHandler} value={rest.entryNumber} title={textFavorite}>{textFavorite}</Button>}
                 <Button href={`/pokemon/${name}`} title={"Voir plus"}>Voir plus</Button>
             </CardActions>
         </Card>
