@@ -108,6 +108,7 @@ const ApiProvider = ({children}) => {
     }
 
     const _initPokemonsPerType = (datasJson) => {
+        setLoading(true);
         const pokemonsDatas = [];
         datasJson.map((pokemon_entry) => {
             const {pokemon:{name, url: urlSpecie}} = pokemon_entry;
@@ -121,6 +122,7 @@ const ApiProvider = ({children}) => {
             })
         });
         setPokemonsPerType(pokemonsDatas);
+        setLoading(false);
     };
 
     return (

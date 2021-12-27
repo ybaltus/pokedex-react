@@ -17,9 +17,9 @@ const ListPokemonType = () => {
         typeHandler(event.target.value);
     };
 
-    // if(loading) {
-    //     return <Spinner/>
-    // }
+    if(loading) {
+        return <Spinner/>
+    }
 
     return (
         <>
