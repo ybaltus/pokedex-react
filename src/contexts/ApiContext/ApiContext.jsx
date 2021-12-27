@@ -11,6 +11,7 @@ const ApiProvider = ({children}) => {
     const [searchValue, setSearchValue] = useState("");
     const [searchUrlParam, setSearchUrlParam] = useState("");
     const [pokemonsFiltered, setPokemonsFiltered] = useState([]);
+    const [pokemonsPerType, setPokemonsPerType] = useState([]);
     const [pokemonsFavorites, setPokemonsFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
     const [alertFavorite, setAlertFavorite] = useState(0);
@@ -92,6 +93,36 @@ const ApiProvider = ({children}) => {
         setLoading(false);
     }
 
+    const typeHandler = async(typeSelected) => {
+        try{
+            const apiUrl = `${BaseURL}/type/${typeSelected}`;
+            const response = await(fetch(apiUrl));
+            const dataJson = await response.json();
+            _initPokemonsPerType(dataJson['pokemon']);
+        }catch(error) {
+            console.log(error.message);
+            setLoading(false);
+            setError(true);
+            throw error
+        }
+    }
+
+    const _initPokemonsPerType = (datasJson) => {
+        const pokemonsDatas = [];
+        datasJson.map((pokemon_entry) => {
+            const {pokemon:{name, url: urlSpecie}} = pokemon_entry;
+            const entry_number = urlSpecie.split('pokemon/')[1];
+            const urlImage = `${BaseURLImage}/${entry_number.split('/')[0]}.png`;
+            pokemonsDatas.push({
+                entryNumber: entry_number,
+                name: name,
+                urlImage: urlImage,
+                urlSpecie: urlSpecie
+            })
+        });
+        setPokemonsPerType(pokemonsDatas);
+    };
+
     return (
         <ApiContext.Provider
             value={{
@@ -108,7 +139,9 @@ const ApiProvider = ({children}) => {
                 pokemonsFavorites,
                 setPokemonsFavorites,
                 alertFavorite,
-                setAlertFavorite
+                setAlertFavorite,
+                pokemonsPerType,
+                typeHandler
             }}
         >
             {children}

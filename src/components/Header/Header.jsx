@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Header.scss';
 import {NavLink} from "react-router-dom";
+import {Box, Menu, MenuItem} from "@mui/material";
 
 const Header = () => {
     return (
@@ -19,15 +20,14 @@ const Header = () => {
                         >
                             PokeDex
                         </Typography>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <nav>
                             <NavLink
                                 to="/"
                                 className={isActive =>
                                     "nav-link" + (!isActive ? "" : "-selected")
                                 }
                                 title={"Accueil"}
-                            >
-                                Accueil
+                            >Accueil
                             </NavLink>
                             <NavLink
                                 to="/favoris"
@@ -38,8 +38,16 @@ const Header = () => {
                             >
                                 Favoris
                             </NavLink>
-                        </Typography>
-
+                            <NavLink
+                                to="/types"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? "" : "-selected")
+                                }
+                                title={"Types"}
+                            >
+                                Types
+                            </NavLink>
+                        </nav>
                     </Toolbar>
                 </Container>
             </AppBar>
