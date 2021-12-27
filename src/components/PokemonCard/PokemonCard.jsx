@@ -32,15 +32,17 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
         <Card
             className={"pokemon-card"}
             sx={{ width: 300 }}>
-            <CardMedia
-                component="img"
-                height="140"
-                image={urlImage}
-                alt={name}
-            />
+            <a href={`/pokemon/${name}`} title={name}>
+                <CardMedia
+                    component="img"
+                    height="140"
+                    image={urlImage}
+                    alt={name}
+                />
+            </a>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {name}
+                    <a className={"linkName"} href={`/pokemon/${name}`} title={name}>{name}</a>
                 </Typography>
             </CardContent>
             <CardActions>
