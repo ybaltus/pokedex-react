@@ -5,9 +5,13 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './PokemonCard.scss';
-import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {ApiContext} from "../../contexts";
 
-const PokemonCard = ({pokemon: {name, urlImage, ...rest}}) => {
+const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
+    const {favoritesHandler, pokemonsFavorites} = useContext(ApiContext);
+
+    //Vérifier s'il sont en favoris
     return (
         <Card
             className={"pokemon-card"}
@@ -24,10 +28,8 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Ajouter au favoris</Button>
+                {isFavorite ? null : <Button size="small" onClick={favoritesHandler} value={rest.entryNumber}>Ajouter au favoris</Button>}
                 <Button href={`/pokemon/${name}`} title={"Voir plus"}>Voir plus</Button>
-
-                {/*<Button size="small">Voir plus</Button>*/}
             </CardActions>
         </Card>
     )

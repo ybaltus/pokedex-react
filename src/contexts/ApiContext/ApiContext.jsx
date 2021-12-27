@@ -11,6 +11,7 @@ const ApiProvider = ({children}) => {
     const [searchValue, setSearchValue] = useState("");
     const [searchUrlParam, setSearchUrlParam] = useState("");
     const [pokemonsFiltered, setPokemonsFiltered] = useState([]);
+    const [pokemonsFavorites, setPokemonsFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -64,6 +65,25 @@ const ApiProvider = ({children}) => {
         );
     }
 
+    const favoritesHandler = (event) => {
+        setLoading(true);
+        const entryN = event.target.value;
+        let pokemonExist = pokemonsFavorites.filter((pokemon, index) => {
+            return parseInt(pokemon.entryNumber) === parseInt(entryN);
+        });
+
+        if(pokemonExist.length === 0) {
+            pokemonExist = pokemonsFiltered.filter((pokemon, index) => {
+                return parseInt(pokemon.entryNumber) === parseInt(entryN);
+            })
+            setPokemonsFavorites([pokemonExist[0], ...pokemonsFavorites])
+            localStorage.setItem('poke-favorites', JSON.stringify([pokemonExist[0], ...pokemonsFavorites]));
+        } else {
+
+        }
+        setLoading(false);
+    }
+
     return (
         <ApiContext.Provider
             value={{
@@ -75,7 +95,10 @@ const ApiProvider = ({children}) => {
                 searchValue,
                 searchUrlParam,
                 loading,
-                setLoading
+                setLoading,
+                favoritesHandler,
+                pokemonsFavorites,
+                setPokemonsFavorites
             }}
         >
             {children}

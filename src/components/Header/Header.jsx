@@ -29,7 +29,17 @@ const Header = () => {
                             >
                                 Accueil
                             </NavLink>
+                            <NavLink
+                                to="/favoris"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? "" : "-selected")
+                                }
+                                title={"Favoris"}
+                            >
+                                Favoris
+                            </NavLink>
                         </Typography>
+
                     </Toolbar>
                 </Container>
             </AppBar>
