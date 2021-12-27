@@ -149,7 +149,6 @@ const ApiProvider = ({children}) => {
                 setAlertFavorite,
                 pokemonsPerType,
                 typeHandler,
-                _initPokemons
             }}
         >
             {children}
