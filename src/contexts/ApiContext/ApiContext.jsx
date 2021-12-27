@@ -45,7 +45,7 @@ const ApiProvider = ({children}) => {
         });
 
         setPokemons(pokemonsDatas);
-        if(currentParam !== null) {
+        if(currentParam !== null && currentParam !== '') {
             setSearchUrlParam(currentParam);
             setPokemonsFiltered(
                 pokemonsDatas.filter((pokemon) => {
@@ -55,17 +55,22 @@ const ApiProvider = ({children}) => {
         }else{
             setPokemonsFiltered(pokemonsDatas);
         }
+
         setLoading(false);
 
     };
 
     const searchHandler = (value) => {
         setSearchValue(value);
-        setPokemonsFiltered(
-            pokemons.filter((pokemon) => {
-                return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
+        if(value) {
+            const newList = pokemons.filter((pokemon) => {
+                return pokemon.name.toLowerCase().includes(value.toLowerCase());
             })
-        );
+            setPokemonsFiltered(newList);
+        }else{
+            setPokemonsFiltered(pokemons);
+        }
+
     }
 
     const favoritesHandler = (event) => {
@@ -143,7 +148,8 @@ const ApiProvider = ({children}) => {
                 alertFavorite,
                 setAlertFavorite,
                 pokemonsPerType,
-                typeHandler
+                typeHandler,
+                _initPokemons
             }}
         >
             {children}

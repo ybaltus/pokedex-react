@@ -1,10 +1,23 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {ApiContext} from "../../contexts";
 import {AlertFavorite, PokemonCard, PokemonSearch} from "../../components";
 import {Box} from "@mui/material";
+import {useSearchParams} from "react-router-dom";
 
 const ListPokemon = () => {
-    const {pokemonsFiltered} = useContext(ApiContext);
+    let [searchParams] = useSearchParams();
+
+    const {pokemonsFiltered, getPokemonsPerRegion} = useContext(ApiContext);
+
+    useEffect(() => {
+        // Initialiser les pokemons
+        if(pokemonsFiltered.length === 0) {
+            const currentParam = searchParams.get('search');
+            getPokemonsPerRegion(null, currentParam);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
+
 
     return (
         <>

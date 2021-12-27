@@ -1,34 +1,26 @@
 import {TextField} from "@mui/material";
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {ApiContext} from "../../contexts";
 import './PokemonSearch.scss';
 import {createSearchParams, useSearchParams} from "react-router-dom";
 import {Spinner} from "../index";
 
 const PokemonSearch = () => {
+    const {searchHandler} = useContext(ApiContext);
     let [searchParams, setSearchParams] = useSearchParams();
     const {
-        getPokemonsPerRegion,
-        pokemonsFiltered,
-        searchHandler,
         loading
     } = useContext(ApiContext);
-
-    useEffect(() => {
-        // Initialiser les pokemons
-        if(pokemonsFiltered.length === 0) {
-            const currentParam = searchParams.get('search');
-            getPokemonsPerRegion(null, currentParam);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const onChangeSearch = (e) => {
         const value = e.target.value;
         setSearchParams(
             createSearchParams({'search': value})
         );
-        searchHandler(value);
+        setTimeout(() => {
+            searchHandler(value);
+
+        }, 800)
     }
 
     if(loading) {
