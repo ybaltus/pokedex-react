@@ -1,0 +1,19 @@
+
+.formContact{
+  .MuiFormControl-root{
+    .MuiInputLabel-root{
+      color: black!important;
+
+    }
+    .MuiInputBase-input{
+      color: black;
+    }
+  }
+  #spinnerMessage{
+    margin: 0;
+  }
+}
+
+.alert-disabled-message{
+  display: none !important;
+}
