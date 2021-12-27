@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Header.scss';
 import {NavLink} from "react-router-dom";
-import {Box, Menu, MenuItem} from "@mui/material";
 import {ContactMe} from "../../containers";
 
 const Header = () => {

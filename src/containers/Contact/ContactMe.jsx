@@ -46,12 +46,10 @@ const ContactMe = () => {
         // Send email
         emailjs.send(EmailJsIds.SERVICE_ID, EmailJsIds.TEMPLATE_ID, values, EmailJsIds.USER_ID)
             .then((result) => {
-                // console.log(result.text);
-
                 setLoadingMessage(false);
                 setHideSuccess(false);
             }, (error) => {
-                // console.log(error.text);
+                console.log(error.text);
                 setLoadingMessage(false);
                 setHideError(false);
             });
@@ -60,16 +58,16 @@ const ContactMe = () => {
     const handleInputValue = (event) => {
         const {name, value} = event.target;
         if(name === 'firstname') {
-            setValues({...values, ["firstname"]: value});
+            setValues({...values, "firstname": value});
         }
         if(name === 'lastname') {
-            setValues({...values, ["lastname"]: value});
+            setValues({...values, "lastname": value});
         }
         if(name === 'email') {
-            setValues({...values, ["email"]: value});
+            setValues({...values, "email": value});
         }
         if(name === 'message') {
-            setValues({...values, ["message"]: value});
+            setValues({...values, "message": value});
         }
     }
 
@@ -93,6 +91,7 @@ const ContactMe = () => {
                     </form>
                     <Alert severity="success" className={hideSuccess ? "alert-disabled-message": ''}>L'email a été envoyé !</Alert>
                     <Alert severity="error" className={hideError ? "alert-disabled-message": ''}>L'email n'a pas été envoyé </Alert>
+                    <em>* Un email sera automatiquement envoyé en copie à <strong>y.baltus@ecole-ipssi.net.</strong></em>
                 </Box>
             </Modal>
         </div>

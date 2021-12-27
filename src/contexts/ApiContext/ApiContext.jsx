@@ -33,7 +33,7 @@ const ApiProvider = ({children}) => {
 
     const _initPokemons = (datasJson, currentParam) => {
         const pokemonsDatas = [];
-        datasJson.map((pokemon_entry) => {
+        datasJson.forEach((pokemon_entry) => {
             const {entry_number, pokemon_species:{name, url: urlSpecie}} = pokemon_entry;
             const urlImage = `${BaseURLImage}/${entry_number}.png`;
             pokemonsDatas.push({
@@ -110,7 +110,7 @@ const ApiProvider = ({children}) => {
     const _initPokemonsPerType = (datasJson) => {
         setLoading(true);
         const pokemonsDatas = [];
-        datasJson.map((pokemon_entry) => {
+        datasJson.forEach((pokemon_entry) => {
             const {pokemon:{name, url: urlSpecie}} = pokemon_entry;
             const entry_number = urlSpecie.split('pokemon/')[1];
             const urlImage = `${BaseURLImage}/${entry_number.split('/')[0]}.png`;

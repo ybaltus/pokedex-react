@@ -14,6 +14,7 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
 
     useEffect(() => {
         textFavoriteHandler();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemonsFavorites]);
 
     const textFavoriteHandler = () => {
@@ -27,7 +28,6 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
         }
     }
 
-    //Vérifier s'il sont en favoris
     return (
         <Card
             className={"pokemon-card"}
@@ -45,8 +45,8 @@ const PokemonCard = ({pokemon: {name, urlImage, ...rest}, isFavorite}) => {
             </CardContent>
             <CardActions>
                 { isFavorite ? null :
-                    <Button size="small" onClick={favoritesHandler} value={rest.entryNumber} title={textFavorite}>{textFavorite}</Button>}
-                <Button href={`/pokemon/${name}`} title={"Voir plus"}>Voir plus</Button>
+                    <Button size="small" onClick={favoritesHandler} value={rest.entryNumber} title={textFavorite} variant="outlined">{textFavorite}</Button>}
+                <Button size="small" href={`/pokemon/${name}`} title={"Voir plus"} variant="outlined">Voir plus</Button>
             </CardActions>
         </Card>
     )

@@ -10,8 +10,7 @@ const AlertFavorite = () => {
     }
 
     if(alertFavorite === 1) {
-       return <Alert severity="success" onClose={resetAlert} >Le pokémon a été ajouté aux favoris.</Alert>
-
+        return <Alert severity="success" onClose={resetAlert} >Le pokémon a été ajouté aux favoris.</Alert>
     }
     if(alertFavorite === 2) {
         return <Alert severity="success" onClose={resetAlert} >Le pokémon a été retiré des favoris.</Alert>

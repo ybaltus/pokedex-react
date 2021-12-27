@@ -1,18 +1,19 @@
 import './Favorites.scss';
 import {useContext, useEffect} from "react";
 import {ApiContext} from "../../contexts";
-import {PokemonCard, Spinner} from "../../components";
+import {PokemonCard} from "../../components";
 import {Box} from "@mui/material";
 import Button from "@mui/material/Button";
 
 const Favorites = () => {
-    const {favoritesHandler, pokemonsFavorites, setPokemonsFavorites} = useContext(ApiContext);
+    const {pokemonsFavorites, setPokemonsFavorites} = useContext(ApiContext);
 
     useEffect(() => {
         const pokemonsInLocalStorage = localStorage.getItem('poke-favorites');
         if(pokemonsInLocalStorage) {
             setPokemonsFavorites(JSON.parse(pokemonsInLocalStorage));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 

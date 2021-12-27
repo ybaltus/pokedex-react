@@ -7,4 +7,11 @@
     margin-top: 30px;
     margin-bottom: 50px;
   }
+  .MuiButtonBase-root{
+    color:white;
+    &:hover{
+    background-color: lightgray;
+      color:black;
+    }
+  }
 }

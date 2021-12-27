@@ -1,5 +1,5 @@
 import {TextField} from "@mui/material";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import {ApiContext} from "../../contexts";
 import './PokemonSearch.scss';
 import {createSearchParams, useSearchParams} from "react-router-dom";
@@ -20,7 +20,7 @@ const PokemonSearch = () => {
             const currentParam = searchParams.get('search');
             getPokemonsPerRegion(null, currentParam);
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChangeSearch = (e) => {
@@ -43,6 +43,8 @@ const PokemonSearch = () => {
             variant="standard"
             onChange={onChangeSearch}
             defaultValue={searchParams.get('search')}
+            size={"normal"}
+            inputProps={{ maxLength: 25 }}
         ></TextField>
     )
 }

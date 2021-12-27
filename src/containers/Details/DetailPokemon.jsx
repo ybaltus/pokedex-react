@@ -17,6 +17,7 @@ const DetailPokemon = () => {
     useEffect(() => {
         setLoading(true);
         initPokemon();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const initPokemon = async() => {
@@ -47,52 +48,52 @@ const DetailPokemon = () => {
     if(loading) {
         return <Spinner/>
     }
-        return (
-            <>
-                <h1>Vue détaillé de {pokemon.name}</h1>
-                <Box
-                    className={"pokemon-details"}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        flexWrap: 'wrap',
-                        m: 10,
-                    }}
-                >
-                    <Box className={"details-box"}>
-                        <Paper variant="outlined">
-                            <img src={pokemon.imagePokemon} alt={pokemon.name}/>
-                        </Paper>
-                    </Box>
-                    <Box className={"details-box"}>
-                        <h2>{pokemon.name} <span> </span>
-                            {pokemon.types.map(typePoke => {
-                               return <Chip label= {typePoke.type.name} className={`chip-color-${typePoke.type.name}`}/>
-                            })}
-                        </h2>
-                        <ul>
-                            <li key={'item-weight'}>{"Poid: "+ pokemon.weight}</li>
-                            <li key={'item-height'}>{"Taille: "+ pokemon.height}</li>
-                        </ul>
-                        <Divider/>
-                        <h4>Les 3 premières capacités</h4>
-                        <ul>
-                            {pokemon.skills.map((skill, index) => {
-                                return <li key={'item-skill-'+index}>{skill.move.name}</li>
-                            })}
-                        </ul>
-                        <Divider/>
-                        <h4>Statistiques</h4>
-                        <ul>
-                            {pokemon.stats.map((stat, index) => {
-                                return <li key={'item-stat-'+index}>{stat.stat.name}: {stat.base_stat}</li>
-                            })}
-                        </ul>
-                    </Box>
-
+    return (
+        <>
+            <h1>Vue détaillée de {pokemon.name}</h1>
+            <Box
+                className={"pokemon-details"}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexWrap: 'wrap',
+                    m: 10,
+                }}
+            >
+                <Box className={"details-box"}>
+                    <Paper variant="outlined">
+                        <img src={pokemon.imagePokemon} alt={pokemon.name}/>
+                    </Paper>
                 </Box>
-            </>
-        )
+                <Box className={"details-box"}>
+                    <h2>{pokemon.name} <span> </span>
+                        {pokemon.types.map((typePoke, index) => {
+                            return <Chip key={'chip-'+index} label= {typePoke.type.name} className={`chip-color-${typePoke.type.name}`}/>
+                        })}
+                    </h2>
+                    <ul>
+                        <li key={'item-weight-1'}>{"Poids: "+ pokemon.weight+" kg"}</li>
+                        <li key={'item-height-2'}>{"Taille: "+ pokemon.height + "cm"}</li>
+                    </ul>
+                    <Divider/>
+                    <h4>Les 3 premières capacités</h4>
+                    <ul>
+                        {pokemon.skills.map((skill, index) => {
+                            return <li key={'item-skill-'+index}>{skill.move.name}</li>
+                        })}
+                    </ul>
+                    <Divider/>
+                    <h4>Statistiques</h4>
+                    <ul>
+                        {pokemon.stats.map((stat, index) => {
+                            return <li key={'item-stat-'+index}>{stat.stat.name}: {stat.base_stat}</li>
+                        })}
+                    </ul>
+                </Box>
+
+            </Box>
+        </>
+    )
 
 
 }
